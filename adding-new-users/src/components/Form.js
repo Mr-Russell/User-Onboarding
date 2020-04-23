@@ -2,13 +2,15 @@ import React from 'react';
 
 function Form (props) {
     return(
-        <div>
+        <form onSubmit={props.onSubmit}>
             <h3>Please Fill Out The Form Below</h3>
 
             <label>Name:
                 <input
                 name='name'
                 type='text'
+                value={props.values.name}
+                onChange={props.inputChange}
                 ></input>
             </label>
 
@@ -17,7 +19,9 @@ function Form (props) {
             <label>Email:
                 <input
                 name='email'
-                type='text'
+                type='email'
+                value={props.values.email}
+                onChange={props.inputChange}
                 ></input>
             </label>
 
@@ -26,7 +30,9 @@ function Form (props) {
             <label>Password:
                 <input
                 name='password'
-                type='text'
+                type='password'
+                value={props.values.password}
+                onChange={props.inputChange}
                 ></input>
             </label>
 
@@ -34,15 +40,24 @@ function Form (props) {
 
             <label>Do you Agree to the Terms of Service?:
                 <input
-                name='name'
+                name='tos'
                 type='checkbox'
+                value={props.values.tos}
+                onChange={props.inputChange}
                 ></input>
             </label>
 
             <br />
 
+            <div className='errors'>
+                {props.errors.name.length > 0 ? (<p>{props.errors.username}</p>) : null}
+                {props.errors.email.length > 0 ? (<p>{props.errors.email}</p>) : null}
+                {props.errors.password.length > 0 ? (<p>{props.errors.password}</p>) : null}
+                {props.errors.tos === false ? (<p>{props.errors.tos}</p>) : null}
+            </div>
+
             <button>Submit</button>
-        </div>
+        </form>
     );
 };
 
